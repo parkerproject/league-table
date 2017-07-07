@@ -1,10 +1,15 @@
 import React from 'react';
+import Table from './table';
 import '../App.css';
 
 
 function App() {
   return (
-    <span>Test</span>
+    <div>
+      <Table />
+      <Table />
+    </div>
+
   );
 }
 
