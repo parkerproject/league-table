@@ -23,8 +23,24 @@
   to { transform: rotate(360deg); }
 }
 
-.league_table{
+#league_table{
   width: 400px;
   float: left;
   margin: 5px;
+  font-size: 14px;
+}
+
+#league_table table{
+  border-collapse: collapse;
+}
+
+#league_table th{
+  text-align: left;
+  padding: 5px;
+  border:1px solid black
+}
+
+#league_table td{
+  border:1px solid black;
+  padding: 3px;
 }

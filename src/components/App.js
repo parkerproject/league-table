@@ -1,12 +1,16 @@
 import React from 'react';
 import Table from './table';
-import '../App.css';
 
+const divStyle = {
+  width: '400px',
+  float: 'left',
+  margin: '5px',
+  fontSize: '14px',
+};
 
 function App() {
   return (
-    <div>
-      <Table />
+    <div style={divStyle}>
       <Table />
     </div>
 
