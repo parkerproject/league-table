@@ -1,72 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const data = [
-  { name: 'Kirkland & Ellis LLP',
-    rank: 1,
-  },
-  { name: 'Paul, Weiss, Rifkind, Wharton & Garrison LLP',
-    rank: 2,
-  },
-  { name: 'Latham & Watkins LLP',
-    rank: 3,
-  },
-  { name: 'Weil, Gotshal & Manges LLP',
-    rank: 4,
-  },
-  { name: 'Jones Day',
-    rank: 5,
-  },
-  { name: 'DLA Piper',
-    rank: 6,
-  },
-  { name: 'Simpson Thacher & Bartlett LLP',
-    rank: 7,
-  },
-  { name: 'Skadden, Arps, Slate, Meagher & Flom LLP',
-    rank: 8,
-  },
-  { name: 'White & Case LLP',
-    rank: 9,
-  },
-  { name: 'Morgan, Lewis & Bockius LLP',
-    rank: 10,
-  },
-  { name: 'Sidley Austin LLP',
-    rank: 11,
-  },
-  { name: 'Willkie Farr & Gallagher LLP',
-    rank: 12,
-  },
-  { name: 'Hogan Lovells',
-    rank: 13,
-  },
-  { name: 'Stikeman Elliott LLP',
-    rank: 14,
-  },
-  { name: 'Freshfields Bruckhaus Deringer LLP',
-    rank: 15,
-  },
-  { name: 'Goodwin Procter LLP',
-    rank: 16,
-  },
-  { name: 'Sullivan & Cromwell LLP',
-    rank: 17,
-  },
-  { name: 'Akin Gump Strauss Hauer & Feld LLP',
-    rank: 18,
-  },
-  { name: 'Clifford Chance LLP',
-    rank: 19,
-  },
-  { name: 'Dechert LLP',
-    rank: 20,
-  },
-];
+// Import React Table
+import ReactTable from 'react-table';
+import 'react-table/react-table.css';
 
 
 const tableStyles = {
   table: {
     borderCollapse: 'collapse',
+    width: '100%',
+    fontSize: 13,
   },
 
   th: {
@@ -79,12 +23,50 @@ const tableStyles = {
     border: '1px solid black',
     padding: '3px',
   },
+  header: {
+    background: 'black',
+    color: 'white',
+    padding: 5,
+    textTransform: 'uppercase',
+    fontSize: 13,
+  },
 };
 
-function Table() {
+
+function Table(props) {
+  const data = props.data;
+
+  // if (props.type === 'volume') {
+  //   data = orderBy(data, ['AMOUNT'], ['desc']);
+  //   const e = groupBy(data, 'AMOUNT');
+  //   console.log(e[Object.keys(e)[0]]);
+  // }
+
   return (
     <div>
-      <table style={tableStyles.table}>
+      <div style={tableStyles.header}>{props.title}</div>
+      <ReactTable
+        data={data}
+        columns={[
+          {
+            Header: props.title,
+            columns: [{
+              Header: 'Rank',
+              accessor: 'AMOUNT',
+            },
+            {
+              Header: 'Adviser',
+              accessor: 'COMPANY',
+            },
+            ],
+          },
+        ]}
+        defaultPageSize={10}
+        showPageSizeOptions={false}
+        className="-striped -highlight"
+        style={{ fontSize: 12 }}
+      />
+      {/* <table style={tableStyles.table}>
         <thead>
           <tr>
             <th style={tableStyles.th}>Rank</th>
@@ -92,16 +74,20 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-          {data.map(s => (
+          {data.map((s, key) => (
             <tr>
-              <td style={tableStyles.td}>{s.rank}</td>
-              <td style={tableStyles.td}>{s.name}</td>
+              <td style={tableStyles.td}>{key} ({s.AMOUNT})</td>
+              <td style={tableStyles.td}>{s.COMPANY}</td>
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
     </div>
   );
 }
+
+Table.propTypes = {
+  title: PropTypes.string.isRequired,
+};
 
 export default Table;
