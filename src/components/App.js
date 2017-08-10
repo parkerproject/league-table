@@ -4,7 +4,7 @@ import axios from 'axios';
 import Table from './table';
 import '../App.css';
 
-const API_URL = 'http://league-table.herokuapp.com/bankruptcy';
+const API_URL = 'https://league-table.herokuapp.com/bankruptcy';
 
 const styles = {
   table: {
